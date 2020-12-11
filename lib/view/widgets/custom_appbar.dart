@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String categoryTitle;
-  const CustomAppBar({Key key,this.categoryTitle}) : super(key: key);
+  final Function onTap;
+  const CustomAppBar({Key key, this.categoryTitle,this.onTap}) : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(55);
@@ -13,6 +14,15 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: Color(0xFFFF6600),
       elevation: 0,
       title: buildAppBarTitle(),
+      actions: [
+        IconButton(
+          icon: Icon(
+            Icons.refresh,
+            color: Colors.white,
+          ),
+          onPressed: onTap,
+        )
+      ],
     );
   }
 

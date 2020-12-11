@@ -3,6 +3,7 @@ import 'package:hackernews/core/hn_api.dart';
 import 'package:hackernews/core/model/news_item.dart';
 import 'package:hackernews/core/model/stories.dart';
 import 'package:hackernews/view/widgets/custom_appbar.dart';
+import 'package:hackernews/view/widgets/new_card.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.story}) : super(key: key);
@@ -26,6 +27,8 @@ class _HomeState extends State<Home> {
   }
 
   void fetchData() async {
+    print("WORKINGG");
+    print(newsItems);
     setState(() {
       _id = [];
       newsItems = Map();
@@ -52,53 +55,82 @@ class _HomeState extends State<Home> {
       backgroundColor: Color(0xFFFFFCF5),
       appBar: CustomAppBar(
         categoryTitle: getCategoryAppBarTitle(),
+        onTap: refreshData,
       ),
-      body: buildNewsBody(),
+      body: _isLoading ? buildLoadingAnimation() : buildBody(),
     );
   }
 
-  Container buildNewsBody() {
+  Container buildLoadingAnimation() {
     return Container(
-      padding: EdgeInsets.all(8),
-      child: this.errorTitle != null
-          ? buildErrorTitle()
-          : this._isLoading
-              ? buildCircularProgressIndicator()
-              : buildNewsList(),
-    );
-  }
-
-  Container buildErrorTitle() {
-    return Container(
-      padding: EdgeInsets.all(32.0),
       child: Center(
-        child: Text(
-          this.errorTitle,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 20,
-            color: Colors.black,
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(
+            Color(0xFFFF6600),
           ),
         ),
       ),
     );
   }
 
-  Container buildCircularProgressIndicator() {
-    return Container(
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-
-  ListView buildNewsList() {
+  ListView buildBody() {
     return ListView.builder(
       itemCount: this._id.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+      itemBuilder: (BuildContext context, int index) {
+        return FutureBuilder(
+          future: hNapi.getNewsItem(this._id[index]),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (newsItems[index] != null) {
+              var item = newsItems[index];
+              return CustomNewCard(
+                newsItem: item,
+                key: Key(item.id.toString()),
+              );
+            }
+            //? ======================
+            //? ======================
+            if (snapshot.hasData && snapshot.data != null) {
+              var item = snapshot.data;
+              newsItems[index] = item;
+              return CustomNewCard(
+                newsItem: item,
+                key: Key(item.id.toString()),
+              );
+            }
+            //! ======================
+            //! ======================
+            else if (snapshot.hasError) {
+              return Container(
+                padding: EdgeInsets.all(32.0),
+                child: Center(
+                  child: Text(
+                    "Error loading story ${this._id[index]}",
+                    style: TextStyle(
+                      color: Colors.orange,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              );
+            }
+            //  ======================
+            //  ======================
+            else {
+              return Container(
+                padding: EdgeInsets.all(32.0),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Colors.transparent,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }
+          },
         );
       },
     );

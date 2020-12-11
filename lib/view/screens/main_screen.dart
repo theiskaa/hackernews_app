@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackernews/core/model/stories.dart';
 import 'package:hackernews/view/screens/home.dart';
-import 'package:hackernews/view/widgets/custom_appbar.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key key}) : super(key: key);
@@ -44,21 +43,10 @@ class MainScreen extends StatelessWidget {
           case 4:
             return Home(story: Stories.asks);
           default:
-            break;
+            return Home(story: Stories.top);
         }
       },
     );
   }
 }
-/*
-aklsflkansfalnsfa
-sfaklsfnlkanflanlfbaslfbjaf
-alajsnflanlfknasf
-a;sknfalsnflaf
-asnfoaibfn ;ksvgodnfuysdufghk
-fouysblzkfbgaiuodsm,.sdkjsdlnm,s
-dfAfljabfnm,aofvbanm,qivdioq
-qdoafaobfnmaf
-alvfuibnal;faf
-afoanifpaiopf
-*/
+

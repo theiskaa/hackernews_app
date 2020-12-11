@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hackernews/view/screens/home.dart';
 import 'package:hackernews/view/screens/main_screen.dart';
 
 void main() {

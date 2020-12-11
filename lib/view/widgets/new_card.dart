@@ -4,14 +4,10 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:hackernews/core/model/news_item.dart';
 
 class CustomNewCard extends StatelessWidget {
-  // final int id;
-  // final String storyTitle;
-  // final int storyVotes;
-  // final int storyCommentCount;
 
   final NewsItem newsItem;
 
-  const CustomNewCard({
+  CustomNewCard({
     Key key,
     this.newsItem,
   }) : super(key: key);
@@ -19,10 +15,13 @@ class CustomNewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var date = DateTime.fromMillisecondsSinceEpoch(newsItem.time * 1000);
-    return ListTile(
-      leading: buildID(),
-      title: buildTitle(),
-      subtitle: buildSubtitle(date),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        leading: buildID(),
+        title: buildTitle(),
+        subtitle: buildSubtitle(date),
+      ),
     );
   }
 
@@ -30,7 +29,7 @@ class CustomNewCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: Text(
-        "${newsItem.score} points  |  ${newsItem.comments.length} comments | ${timeago.format(date)}",
+        "${newsItem.score} points  |  ${newsItem.descendants} comments | ${timeago.format(date)}",
         style: GoogleFonts.roboto(fontSize: 16),
       ),
     );
@@ -47,9 +46,9 @@ class CustomNewCard extends StatelessWidget {
     return Opacity(
       opacity: .5,
       child: Text(
-        "${newsItem.id}. ▲",
+        "${newsItem.by}-▲",
         style: GoogleFonts.roboto(
-          fontSize: 20,
+          fontSize: 15,
           fontWeight: FontWeight.bold,
         ),
       ),
