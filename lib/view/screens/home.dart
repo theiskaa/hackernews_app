@@ -27,8 +27,6 @@ class _HomeState extends State<Home> {
   }
 
   void fetchData() async {
-    print("WORKINGG");
-    print(newsItems);
     setState(() {
       _id = [];
       newsItems = Map();

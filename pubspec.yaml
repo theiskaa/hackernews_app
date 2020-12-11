@@ -27,7 +27,9 @@ dependencies:
   html:
   firebase: ^5.0.0
   timeago: ^2.0.8
-  google_fonts: 
+  google_fonts:
+  webview_flutter: ^1.0.7
+  flutter_slidable: ^0.5.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
