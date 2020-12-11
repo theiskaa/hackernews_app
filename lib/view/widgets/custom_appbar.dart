@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({Key key}) : super(key: key);
+  final String categoryTitle;
+  const CustomAppBar({Key key,this.categoryTitle}) : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(55);
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xffFE6601),
+      backgroundColor: Color(0xFFFF6600),
       elevation: 0,
       title: buildAppBarTitle(),
-      
     );
   }
 
@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   Text buildHNTitle() {
     return Text(
-      "Hacker News",
+      "Hacker News | $categoryTitle",
       style: TextStyle(
         fontSize: 22,
         color: Colors.white,
@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         maxWidth: 35,
       ),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white, width: 2),
+        border: Border.all(color: Colors.white, width: 3),
       ),
       child: Center(
         child: Text(

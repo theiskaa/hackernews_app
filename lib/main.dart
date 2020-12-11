@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackernews/view/screens/home.dart';
+import 'package:hackernews/view/screens/main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Hacker News',
-      home: Home(),
+      home: MainScreen(),
     );
   }
 }
