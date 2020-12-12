@@ -1,6 +1,6 @@
 ## classmate
 
-[![License: MIT](https://img.shields.io/npm/l/license?color=red&label=MIT&logo=minor&logoColor=black)](https://github.com/angular/angular.js/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/npm/l/license?color=red&label=HackerNewsApp&logo=minor&logoColor=black)](https://github.com/angular/angular.js/blob/master/LICENSE)
 [![Twitter: IsmaelSh4](https://img.shields.io/twitter/follow/theiskaa?style=social)](https://twitter.com/theiskaa)
 
 Hackernews site's clone application developed with flutter and [hackernews api](https://github.com/HackerNews/API). You can fork that repo and develope more.
@@ -25,15 +25,6 @@ And then you can run the application
 ```
 flutter run
 ```
-
-
-  http:
-  html:
-  firebase: ^5.0.0
-  timeago: ^2.0.8
-  google_fonts:
-  webview_flutter: ^1.0.7
-  flutter_slidable: ^0.5.7
 
 ## Packages i use:
 - [http](https://pub.dev/packages/http)
