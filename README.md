@@ -1,4 +1,4 @@
-## classmate
+# Hacker News Application
 
 [![License: MIT](https://img.shields.io/npm/l/license?color=red&label=HackerNewsApp&logo=minor&logoColor=black)](https://github.com/angular/angular.js/blob/master/LICENSE)
 [![Twitter: IsmaelSh4](https://img.shields.io/twitter/follow/theiskaa?style=social)](https://twitter.com/theiskaa)
