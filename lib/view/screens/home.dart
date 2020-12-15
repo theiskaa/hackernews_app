@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hackernews/core/hn_api.dart';
 import 'package:hackernews/core/model/news_item.dart';
@@ -82,6 +84,7 @@ class _HomeState extends State<Home> {
               var item = newsItems[index];
               return CustomNewCard(
                 newsItem: item,
+                numIndex: "${index + 1}",
                 key: Key(item.id.toString()),
               );
             }
@@ -92,6 +95,7 @@ class _HomeState extends State<Home> {
               newsItems[index] = item;
               return CustomNewCard(
                 newsItem: item,
+                numIndex: "${index + 1}",
                 key: Key(item.id.toString()),
               );
             }

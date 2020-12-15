@@ -8,10 +8,12 @@ import 'package:hackernews/core/model/news_item.dart';
 
 class CustomNewCard extends StatefulWidget {
   final NewsItem newsItem;
+  final String numIndex;
 
   CustomNewCard({
     Key key,
     this.newsItem,
+    this.numIndex,
   }) : super(key: key);
 
   @override
@@ -25,6 +27,7 @@ class _CustomNewCardState extends State<CustomNewCard> {
     var date = DateTime.fromMillisecondsSinceEpoch(widget.newsItem.time * 1000);
     return InkWell(
       splashColor: Colors.orange,
+
       ///
       ///
       ///
@@ -41,6 +44,7 @@ class _CustomNewCardState extends State<CustomNewCard> {
           isOpened = true;
         });
       },
+
       ///
       ///
       ///
@@ -100,9 +104,9 @@ class _CustomNewCardState extends State<CustomNewCard> {
     return Opacity(
       opacity: .5,
       child: Text(
-        "${widget.newsItem.by}-▲",
+        "${widget.numIndex}. ▲",
         style: GoogleFonts.roboto(
-          fontSize: 15,
+          fontSize: 17,
           fontWeight: FontWeight.bold,
         ),
       ),
