@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -11,12 +12,16 @@ class ContentScreen extends StatefulWidget {
 }
 
 class ContentScreenState extends State<ContentScreen> {
+  Completer<WebViewController> _controller;
   @override
   void initState() {
     super.initState();
     if (Platform.isAndroid) {
       WebView.platform = SurfaceAndroidWebView();
     }
+    _controller =
+    Completer<WebViewController>();
+
   }
 
   @override
@@ -32,6 +37,19 @@ class ContentScreenState extends State<ContentScreen> {
       ),
       body: WebView(
         initialUrl: widget.url,
+        javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (WebViewController webViewController) {
+          _controller.complete(webViewController);
+        },
+        gestureNavigationEnabled: true,
+        navigationDelegate: (NavigationRequest request) {
+          if (request.url.startsWith( widget.url)) {
+            print('navigate');
+            return NavigationDecision.navigate;
+          }
+          print('prevent');
+          return NavigationDecision.prevent;
+        },
       ),
     );
   }
